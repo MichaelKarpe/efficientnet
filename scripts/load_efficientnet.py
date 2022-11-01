@@ -32,6 +32,8 @@ def _get_model_by_name(name, *args, **kwargs):
         'efficientnet-b3': efficientnet.keras.EfficientNetB3,
         'efficientnet-b4': efficientnet.keras.EfficientNetB4,
         'efficientnet-b5': efficientnet.keras.EfficientNetB5,
+        'efficientnet-b6': efficientnet.keras.EfficientNetB6,
+        'efficientnet-b7': efficientnet.keras.EfficientNetB7,
     }
 
     model_fn = models[name]
@@ -108,7 +110,7 @@ def convert_tensorflow_model(
             except:
                 print(f"Skipping variable {variable.name}, an exception occurred")
     model = _get_model_by_name(
-        model_name, include_top=True, input_shape=None, weights=None, classes=1000
+        model_name, include_top=False, input_shape=None, weights=None, classes=1000
     )
     load_weights(model, weights)
     output_file = f"{output_file}.h5"
